@@ -1,0 +1,41 @@
+{
+  "name": "User",
+  "description": "Standard user with basic access",
+  "color": "#2196f3",
+  "order": 200,
+  "isActive": true,
+  "isSystem": true,
+  "permissions": [
+    { "action": "read", "subject": "Sample" },
+    { "action": "read", "subject": "Menu" },
+    { "action": "update", "subject": "Menu" }
+  ],
+  "accessLevels": {
+    "standard": {
+      "label": "Standard",
+      "description": "Full user access — manage own samples",
+      "order": 1,
+      "permissions": [
+        { "action": "read", "subject": "Sample" },
+        { "action": "create", "subject": "Sample" },
+        { "action": "update", "subject": "Sample" },
+        { "action": "delete", "subject": "Sample" },
+        { "action": "read", "subject": "Menu" },
+        { "action": "update", "subject": "Menu" }
+      ]
+    },
+    "readonly": {
+      "label": "Read Only",
+      "description": "View-only access",
+      "order": 2,
+      "permissions": [
+        { "action": "read", "subject": "Sample" },
+        { "action": "read", "subject": "Menu" }
+      ]
+    }
+  },
+  "modules": [
+    "dashboard",
+    "samples"
+  ]
+}

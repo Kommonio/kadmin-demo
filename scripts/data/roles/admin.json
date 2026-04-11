@@ -1,0 +1,61 @@
+{
+  "name": "Administrator",
+  "description": "Full system access with all permissions",
+  "color": "#f44336",
+  "order": 100,
+  "isActive": true,
+  "isSystem": true,
+  "permissions": [
+    { "action": "read", "subject": "all" }
+  ],
+  "accessLevels": {
+    "superadmin": {
+      "label": "Super Admin",
+      "description": "Full system access",
+      "order": 1,
+      "permissions": [
+        { "action": "manage", "subject": "all" },
+        { "action": "invite", "subject": "User" },
+        { "action": "suspend", "subject": "User" },
+        { "action": "unsuspend", "subject": "User" },
+        { "action": "manage", "subject": "Role" }
+      ]
+    },
+    "platformadmin": {
+      "label": "Platform Admin",
+      "description": "Full access except critical settings",
+      "order": 2,
+      "permissions": [
+        { "action": "manage", "subject": "all" },
+        { "action": "invite", "subject": "User" },
+        { "action": "suspend", "subject": "User" },
+        { "action": "unsuspend", "subject": "User" },
+        { "action": "manage", "subject": "Role" }
+      ]
+    },
+    "standard": {
+      "label": "Standard",
+      "description": "Read/update access with limited create",
+      "order": 3,
+      "permissions": [
+        { "action": "read", "subject": "all" },
+        { "action": "update", "subject": "all" },
+        { "action": "create", "subject": "Sample" }
+      ]
+    },
+    "readonly": {
+      "label": "Read Only",
+      "description": "View-only access",
+      "order": 4,
+      "permissions": [
+        { "action": "read", "subject": "all" }
+      ]
+    }
+  },
+  "modules": [
+    "dashboard",
+    "users",
+    "roles",
+    "samples"
+  ]
+}

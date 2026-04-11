@@ -1,0 +1,9 @@
+{
+  "title": "API Integration Example",
+  "description": "Demonstrates how to connect external services using the Kadmin API hook pattern and backend routes.",
+  "status": "published",
+  "category": "Examples",
+  "tags": ["api", "integration", "hooks"],
+  "priority": "medium",
+  "createdBy": "system"
+}

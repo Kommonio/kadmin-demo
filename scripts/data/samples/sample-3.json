@@ -1,0 +1,9 @@
+{
+  "title": "Theme Customization",
+  "description": "How to customize the MUI theme — colors, typography, dark mode, and component overrides.",
+  "status": "draft",
+  "category": "Customization",
+  "tags": ["theme", "mui", "dark-mode", "styling"],
+  "priority": "low",
+  "createdBy": "system"
+}

@@ -10,6 +10,13 @@
     "build": "cd client && npm run build",
     "dev:client": "cd client && npm start",
     "dev:server": "cd server && npm run dev",
-    "postinstall": "npm run install:all"
+    "seed:roles": "node scripts/pushCollection.js Roles scripts/data/roles/",
+    "seed:samples": "node scripts/pushCollection.js Samples scripts/data/samples/",
+    "seed:all": "npm run seed:roles && npm run seed:samples",
+    "fetch": "node scripts/fetchDocument.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "firebase-admin": "^13.0.2"
   }
 }
