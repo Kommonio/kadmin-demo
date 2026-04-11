@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "buildCommand": "cd client && npm install && npm run build",
+  "buildCommand": "cd client && CI=false npm run build",
   "outputDirectory": "client/build",
-  "installCommand": "cd server && npm install",
+  "installCommand": "cd client && npm install && cd ../server && npm install",
   "functions": {
     "api/index.js": {
       "maxDuration": 60,
