@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Page Not Found — Kadmin Demo</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -50,6 +52,7 @@
       gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
+      margin-bottom: 1.5rem;
     }
     a {
       display: inline-flex;
@@ -72,17 +75,54 @@
       color: #e2e8f0;
       border: 1px solid rgba(255,255,255,.12);
     }
+    .lang-switch {
+      display: inline-flex; border: 1px solid rgba(255,255,255,.15); border-radius: 6px; overflow: hidden;
+    }
+    .lang-switch button {
+      padding: .3rem .65rem; font-family: inherit; font-size: .75rem; font-weight: 500;
+      border: none; cursor: pointer; background: transparent; color: #94a3b8;
+      transition: background .15s, color .15s;
+    }
+    .lang-switch button.active { background: #7C3AED; color: #fff; }
+    .lang-switch button:not(:last-child) { border-right: 1px solid rgba(255,255,255,.15); }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="code">404</div>
-    <h1>Page not found</h1>
-    <p>The page you're looking for doesn't exist or has been moved.</p>
+    <h1 data-i18n="heading">Page not found</h1>
+    <p data-i18n="message">The page you&rsquo;re looking for doesn&rsquo;t exist or has been moved.</p>
     <div class="actions">
-      <a class="btn-primary" href="/">Home</a>
-      <a class="btn-secondary" href="/login">Sign In</a>
+      <a class="btn-primary" href="/" data-i18n="home">Home</a>
+      <a class="btn-secondary" href="/login" data-i18n="signin">Sign In</a>
+    </div>
+    <div class="lang-switch">
+      <button onclick="setLang('en')" id="btn-en" class="active">EN</button>
+      <button onclick="setLang('fr')" id="btn-fr">FR</button>
     </div>
   </div>
+
+  <script>
+    var i18n = {
+      en: { heading: 'Page not found', message: 'The page you\u2019re looking for doesn\u2019t exist or has been moved.', home: 'Home', signin: 'Sign In' },
+      fr: { heading: 'Page introuvable', message: 'La page que vous recherchez n\u2019existe pas ou a \u00e9t\u00e9 d\u00e9plac\u00e9e.', home: 'Accueil', signin: 'Connexion' }
+    };
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.getElementById('btn-en').className = lang === 'en' ? 'active' : '';
+      document.getElementById('btn-fr').className = lang === 'fr' ? 'active' : '';
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        if (i18n[lang][key]) el.innerHTML = i18n[lang][key];
+      });
+      try { localStorage.setItem('kadmin-lang', lang); } catch(e) {}
+    }
+    (function() {
+      var stored = null;
+      try { stored = localStorage.getItem('kadmin-lang'); } catch(e) {}
+      var lang = stored || (navigator.language && navigator.language.startsWith('fr') ? 'fr' : 'en');
+      setLang(lang);
+    })();
+  </script>
 </body>
 </html>

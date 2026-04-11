@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Terms &amp; Conditions — Kadmin Demo</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -16,12 +18,25 @@
       line-height: 1.7;
     }
     .container { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 2rem;
+    }
     .back-link {
       display: inline-flex; align-items: center; gap: .4rem;
       color: #7C3AED; text-decoration: none; font-weight: 500; font-size: .9rem;
-      margin-bottom: 2rem;
     }
     .back-link:hover { text-decoration: underline; }
+    .lang-switch {
+      display: inline-flex; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden;
+    }
+    .lang-switch button {
+      padding: .35rem .75rem; font-family: inherit; font-size: .8rem; font-weight: 500;
+      border: none; cursor: pointer; background: transparent; color: #64748b;
+      transition: background .15s, color .15s;
+    }
+    .lang-switch button.active { background: #7C3AED; color: #fff; }
+    .lang-switch button:not(:last-child) { border-right: 1px solid #e2e8f0; }
     h1 { font-size: 2rem; font-weight: 700; color: #0f172a; margin-bottom: .5rem; }
     .updated { color: #64748b; font-size: .875rem; margin-bottom: 2.5rem; }
     h2 { font-size: 1.25rem; font-weight: 600; color: #0f172a; margin: 2rem 0 .75rem; }
@@ -34,53 +49,128 @@
 </head>
 <body>
   <div class="container">
-    <a class="back-link" href="/">&#8592; Back to Kadmin Demo</a>
-    <h1>Terms &amp; Conditions</h1>
-    <p class="updated">Last updated: April 11, 2026</p>
+    <div class="top-bar">
+      <a class="back-link" href="/" data-i18n="backLink">&#8592; Back to Kadmin Demo</a>
+      <div class="lang-switch">
+        <button onclick="setLang('en')" id="btn-en" class="active">EN</button>
+        <button onclick="setLang('fr')" id="btn-fr">FR</button>
+      </div>
+    </div>
+    <h1 data-i18n="title">Terms &amp; Conditions</h1>
+    <p class="updated" data-i18n="updated">Last updated: April 11, 2026</p>
 
-    <h2>1. Acceptance of Terms</h2>
-    <p>By accessing or using the Kadmin Demo application ("Service"), you agree to be bound by these Terms &amp; Conditions ("Terms"). If you do not agree, please do not use the Service.</p>
+    <div id="content-en">
+      <h2>1. Acceptance of Terms</h2>
+      <p>By accessing or using the Kadmin Demo application (&ldquo;Service&rdquo;), you agree to be bound by these Terms &amp; Conditions (&ldquo;Terms&rdquo;). If you do not agree, please do not use the Service.</p>
 
-    <h2>2. Description of Service</h2>
-    <p>Kadmin Demo is a demonstration application built on the Kadmin framework. It showcases authentication, role-based access control, and CRUD operations. The Service is provided "as is" for evaluation purposes.</p>
+      <h2>2. Description of Service</h2>
+      <p>Kadmin Demo is a demonstration application built on the Kadmin framework. It showcases authentication, role-based access control, and CRUD operations. The Service is provided &ldquo;as is&rdquo; for evaluation purposes.</p>
 
-    <h2>3. User Accounts</h2>
-    <ul>
-      <li>You must provide accurate information when creating an account.</li>
-      <li>You are responsible for maintaining the confidentiality of your credentials.</li>
-      <li>You must notify us immediately of any unauthorized access to your account.</li>
-    </ul>
+      <h2>3. User Accounts</h2>
+      <ul>
+        <li>You must provide accurate information when creating an account.</li>
+        <li>You are responsible for maintaining the confidentiality of your credentials.</li>
+        <li>You must notify us immediately of any unauthorized access to your account.</li>
+      </ul>
 
-    <h2>4. Acceptable Use</h2>
-    <p>You agree not to:</p>
-    <ul>
-      <li>Use the Service for any unlawful purpose.</li>
-      <li>Attempt to gain unauthorized access to any part of the Service.</li>
-      <li>Introduce malicious code or interfere with the Service's operation.</li>
-      <li>Reproduce, duplicate, or resell any portion of the Service without permission.</li>
-    </ul>
+      <h2>4. Acceptable Use</h2>
+      <p>You agree not to:</p>
+      <ul>
+        <li>Use the Service for any unlawful purpose.</li>
+        <li>Attempt to gain unauthorized access to any part of the Service.</li>
+        <li>Introduce malicious code or interfere with the Service&rsquo;s operation.</li>
+        <li>Reproduce, duplicate, or resell any portion of the Service without permission.</li>
+      </ul>
 
-    <h2>5. Intellectual Property</h2>
-    <p>The Service and its original content, features, and functionality are owned by Kommonio and are protected by international copyright, trademark, and other intellectual property laws.</p>
+      <h2>5. Intellectual Property</h2>
+      <p>The Service and its original content, features, and functionality are owned by Kommonio and are protected by international copyright, trademark, and other intellectual property laws.</p>
 
-    <h2>6. Data &amp; Privacy</h2>
-    <p>Your use of the Service is also governed by our <a href="/privacy">Privacy Policy</a>, which is incorporated into these Terms by reference.</p>
+      <h2>6. Data &amp; Privacy</h2>
+      <p>Your use of the Service is also governed by our <a href="/privacy">Privacy Policy</a>, which is incorporated into these Terms by reference.</p>
 
-    <h2>7. Limitation of Liability</h2>
-    <p>In no event shall Kommonio be liable for any indirect, incidental, special, consequential, or punitive damages arising out of your use of the Service.</p>
+      <h2>7. Limitation of Liability</h2>
+      <p>In no event shall Kommonio be liable for any indirect, incidental, special, consequential, or punitive damages arising out of your use of the Service.</p>
 
-    <h2>8. Termination</h2>
-    <p>We may terminate or suspend your access immediately, without prior notice, for any reason including breach of these Terms.</p>
+      <h2>8. Termination</h2>
+      <p>We may terminate or suspend your access immediately, without prior notice, for any reason including breach of these Terms.</p>
 
-    <h2>9. Changes to Terms</h2>
-    <p>We reserve the right to modify these Terms at any time. Changes will be effective upon posting. Continued use of the Service constitutes acceptance of the revised Terms.</p>
+      <h2>9. Changes to Terms</h2>
+      <p>We reserve the right to modify these Terms at any time. Changes will be effective upon posting. Continued use of the Service constitutes acceptance of the revised Terms.</p>
 
-    <h2>10. Contact</h2>
-    <p>If you have questions about these Terms, please contact us at <a href="mailto:support@kommon.io">support@kommon.io</a>.</p>
+      <h2>10. Contact</h2>
+      <p>If you have questions about these Terms, please contact us at <a href="mailto:support@kommon.io">support@kommon.io</a>.</p>
+    </div>
+
+    <div id="content-fr" style="display:none">
+      <h2>1. Acceptation des conditions</h2>
+      <p>En acc&eacute;dant ou en utilisant l&rsquo;application Kadmin Demo (&laquo;&nbsp;Service&nbsp;&raquo;), vous acceptez d&rsquo;&ecirc;tre li&eacute; par les pr&eacute;sentes conditions g&eacute;n&eacute;rales (&laquo;&nbsp;Conditions&nbsp;&raquo;). Si vous n&rsquo;&ecirc;tes pas d&rsquo;accord, veuillez ne pas utiliser le Service.</p>
+
+      <h2>2. Description du service</h2>
+      <p>Kadmin Demo est une application de d&eacute;monstration construite sur le framework Kadmin. Elle met en valeur l&rsquo;authentification, le contr&ocirc;le d&rsquo;acc&egrave;s bas&eacute; sur les r&ocirc;les et les op&eacute;rations CRUD. Le Service est fourni &laquo;&nbsp;tel quel&nbsp;&raquo; &agrave; des fins d&rsquo;&eacute;valuation.</p>
+
+      <h2>3. Comptes utilisateurs</h2>
+      <ul>
+        <li>Vous devez fournir des informations exactes lors de la cr&eacute;ation d&rsquo;un compte.</li>
+        <li>Vous &ecirc;tes responsable du maintien de la confidentialit&eacute; de vos identifiants.</li>
+        <li>Vous devez nous informer imm&eacute;diatement de tout acc&egrave;s non autoris&eacute; &agrave; votre compte.</li>
+      </ul>
+
+      <h2>4. Utilisation acceptable</h2>
+      <p>Vous vous engagez &agrave; ne pas&nbsp;:</p>
+      <ul>
+        <li>Utiliser le Service &agrave; des fins ill&eacute;gales.</li>
+        <li>Tenter d&rsquo;obtenir un acc&egrave;s non autoris&eacute; &agrave; toute partie du Service.</li>
+        <li>Introduire du code malveillant ou interf&eacute;rer avec le fonctionnement du Service.</li>
+        <li>Reproduire, dupliquer ou revendre toute partie du Service sans autorisation.</li>
+      </ul>
+
+      <h2>5. Propri&eacute;t&eacute; intellectuelle</h2>
+      <p>Le Service et son contenu original, ses fonctionnalit&eacute;s et ses caract&eacute;ristiques sont la propri&eacute;t&eacute; de Kommonio et sont prot&eacute;g&eacute;s par les lois internationales sur le droit d&rsquo;auteur, les marques de commerce et autres lois sur la propri&eacute;t&eacute; intellectuelle.</p>
+
+      <h2>6. Donn&eacute;es et confidentialit&eacute;</h2>
+      <p>Votre utilisation du Service est &eacute;galement r&eacute;gie par notre <a href="/privacy">Politique de confidentialit&eacute;</a>, qui est incorpor&eacute;e aux pr&eacute;sentes Conditions par r&eacute;f&eacute;rence.</p>
+
+      <h2>7. Limitation de responsabilit&eacute;</h2>
+      <p>En aucun cas, Kommonio ne pourra &ecirc;tre tenu responsable de tout dommage indirect, accessoire, sp&eacute;cial, cons&eacute;cutif ou punitif d&eacute;coulant de votre utilisation du Service.</p>
+
+      <h2>8. R&eacute;siliation</h2>
+      <p>Nous pouvons mettre fin ou suspendre votre acc&egrave;s imm&eacute;diatement, sans pr&eacute;avis, pour quelque raison que ce soit, y compris en cas de violation des pr&eacute;sentes Conditions.</p>
+
+      <h2>9. Modifications des conditions</h2>
+      <p>Nous nous r&eacute;servons le droit de modifier ces Conditions &agrave; tout moment. Les modifications prendront effet d&egrave;s leur publication. L&rsquo;utilisation continue du Service constitue une acceptation des Conditions r&eacute;vis&eacute;es.</p>
+
+      <h2>10. Contact</h2>
+      <p>Si vous avez des questions concernant ces Conditions, veuillez nous contacter &agrave; <a href="mailto:support@kommon.io">support@kommon.io</a>.</p>
+    </div>
 
     <div class="footer">
-      &copy; 2026 Kommonio. All rights reserved.
+      &copy; 2026 Kommonio. <span data-i18n="rights">All rights reserved.</span>
     </div>
   </div>
+
+  <script>
+    var i18n = {
+      en: { backLink: '\u2190 Back to Kadmin Demo', title: 'Terms & Conditions', updated: 'Last updated: April 11, 2026', rights: 'All rights reserved.' },
+      fr: { backLink: '\u2190 Retour \u00e0 Kadmin Demo', title: 'Conditions g\u00e9n\u00e9rales', updated: 'Derni\u00e8re mise \u00e0 jour\u00a0: 11 avril 2026', rights: 'Tous droits r\u00e9serv\u00e9s.' }
+    };
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.getElementById('content-en').style.display = lang === 'en' ? '' : 'none';
+      document.getElementById('content-fr').style.display = lang === 'fr' ? '' : 'none';
+      document.getElementById('btn-en').className = lang === 'en' ? 'active' : '';
+      document.getElementById('btn-fr').className = lang === 'fr' ? 'active' : '';
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        if (i18n[lang][key]) el.innerHTML = i18n[lang][key];
+      });
+      try { localStorage.setItem('kadmin-lang', lang); } catch(e) {}
+    }
+    (function() {
+      var stored = null;
+      try { stored = localStorage.getItem('kadmin-lang'); } catch(e) {}
+      var lang = stored || (navigator.language && navigator.language.startsWith('fr') ? 'fr' : 'en');
+      setLang(lang);
+    })();
+  </script>
 </body>
 </html>

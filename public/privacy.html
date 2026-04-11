@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy — Kadmin Demo</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -16,12 +18,25 @@
       line-height: 1.7;
     }
     .container { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 2rem;
+    }
     .back-link {
       display: inline-flex; align-items: center; gap: .4rem;
       color: #7C3AED; text-decoration: none; font-weight: 500; font-size: .9rem;
-      margin-bottom: 2rem;
     }
     .back-link:hover { text-decoration: underline; }
+    .lang-switch {
+      display: inline-flex; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden;
+    }
+    .lang-switch button {
+      padding: .35rem .75rem; font-family: inherit; font-size: .8rem; font-weight: 500;
+      border: none; cursor: pointer; background: transparent; color: #64748b;
+      transition: background .15s, color .15s;
+    }
+    .lang-switch button.active { background: #7C3AED; color: #fff; }
+    .lang-switch button:not(:last-child) { border-right: 1px solid #e2e8f0; }
     h1 { font-size: 2rem; font-weight: 700; color: #0f172a; margin-bottom: .5rem; }
     .updated { color: #64748b; font-size: .875rem; margin-bottom: 2.5rem; }
     h2 { font-size: 1.25rem; font-weight: 600; color: #0f172a; margin: 2rem 0 .75rem; }
@@ -34,66 +49,154 @@
 </head>
 <body>
   <div class="container">
-    <a class="back-link" href="/">&#8592; Back to Kadmin Demo</a>
-    <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: April 11, 2026</p>
+    <div class="top-bar">
+      <a class="back-link" href="/" data-i18n="backLink">&#8592; Back to Kadmin Demo</a>
+      <div class="lang-switch">
+        <button onclick="setLang('en')" id="btn-en" class="active">EN</button>
+        <button onclick="setLang('fr')" id="btn-fr">FR</button>
+      </div>
+    </div>
+    <h1 data-i18n="title">Privacy Policy</h1>
+    <p class="updated" data-i18n="updated">Last updated: April 11, 2026</p>
 
-    <h2>1. Introduction</h2>
-    <p>Kommonio ("we", "our", "us") operates the Kadmin Demo application. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our Service.</p>
+    <div id="content-en">
+      <h2>1. Introduction</h2>
+      <p>Kommonio (&ldquo;we&rdquo;, &ldquo;our&rdquo;, &ldquo;us&rdquo;) operates the Kadmin Demo application. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our Service.</p>
 
-    <h2>2. Information We Collect</h2>
-    <p><strong>Account Information:</strong> When you create an account, we collect your name, email address, and authentication credentials (managed by Firebase Authentication).</p>
-    <p><strong>Usage Data:</strong> We automatically collect information about how you interact with the Service, including pages visited, actions performed, and timestamps.</p>
-    <p><strong>Device Information:</strong> We may collect browser type, operating system, and IP address for security and analytics purposes.</p>
+      <h2>2. Information We Collect</h2>
+      <p><strong>Account Information:</strong> When you create an account, we collect your name, email address, and authentication credentials (managed by Firebase Authentication).</p>
+      <p><strong>Usage Data:</strong> We automatically collect information about how you interact with the Service, including pages visited, actions performed, and timestamps.</p>
+      <p><strong>Device Information:</strong> We may collect browser type, operating system, and IP address for security and analytics purposes.</p>
 
-    <h2>3. How We Use Your Information</h2>
-    <ul>
-      <li>To provide, maintain, and improve the Service.</li>
-      <li>To authenticate your identity and manage your account.</li>
-      <li>To enforce role-based access control and permissions.</li>
-      <li>To communicate with you about the Service (e.g., security alerts).</li>
-      <li>To detect, prevent, and address technical issues or abuse.</li>
-    </ul>
+      <h2>3. How We Use Your Information</h2>
+      <ul>
+        <li>To provide, maintain, and improve the Service.</li>
+        <li>To authenticate your identity and manage your account.</li>
+        <li>To enforce role-based access control and permissions.</li>
+        <li>To communicate with you about the Service (e.g., security alerts).</li>
+        <li>To detect, prevent, and address technical issues or abuse.</li>
+      </ul>
 
-    <h2>4. Data Storage &amp; Security</h2>
-    <p>Your data is stored in Google Firebase (Firestore) and protected using industry-standard encryption. We implement appropriate technical and organizational security measures. However, no method of electronic transmission or storage is 100% secure.</p>
+      <h2>4. Data Storage &amp; Security</h2>
+      <p>Your data is stored in Google Firebase (Firestore) and protected using industry-standard encryption. We implement appropriate technical and organizational security measures. However, no method of electronic transmission or storage is 100% secure.</p>
 
-    <h2>5. Third-Party Services</h2>
-    <p>We use the following third-party services that may collect data:</p>
-    <ul>
-      <li><strong>Firebase Authentication</strong> — for user sign-in (Google SSO).</li>
-      <li><strong>Google Cloud / Firestore</strong> — for data storage.</li>
-      <li><strong>Vercel</strong> — for hosting and serverless functions.</li>
-    </ul>
-    <p>Each service operates under its own privacy policy.</p>
+      <h2>5. Third-Party Services</h2>
+      <p>We use the following third-party services that may collect data:</p>
+      <ul>
+        <li><strong>Firebase Authentication</strong> &mdash; for user sign-in (Google SSO).</li>
+        <li><strong>Google Cloud / Firestore</strong> &mdash; for data storage.</li>
+        <li><strong>Vercel</strong> &mdash; for hosting and serverless functions.</li>
+      </ul>
+      <p>Each service operates under its own privacy policy.</p>
 
-    <h2>6. Data Retention</h2>
-    <p>We retain your personal data only as long as necessary for the purposes outlined in this policy. You may request deletion of your account and associated data at any time by contacting us.</p>
+      <h2>6. Data Retention</h2>
+      <p>We retain your personal data only as long as necessary for the purposes outlined in this policy. You may request deletion of your account and associated data at any time by contacting us.</p>
 
-    <h2>7. Your Rights</h2>
-    <p>Depending on your jurisdiction, you may have the right to:</p>
-    <ul>
-      <li>Access, correct, or delete your personal information.</li>
-      <li>Object to or restrict the processing of your data.</li>
-      <li>Request data portability.</li>
-      <li>Withdraw consent where applicable.</li>
-    </ul>
+      <h2>7. Your Rights</h2>
+      <p>Depending on your jurisdiction, you may have the right to:</p>
+      <ul>
+        <li>Access, correct, or delete your personal information.</li>
+        <li>Object to or restrict the processing of your data.</li>
+        <li>Request data portability.</li>
+        <li>Withdraw consent where applicable.</li>
+      </ul>
 
-    <h2>8. Cookies</h2>
-    <p>The Service uses essential cookies and local storage for authentication tokens and user preferences (e.g., theme selection, language). We do not use tracking or advertising cookies.</p>
+      <h2>8. Cookies</h2>
+      <p>The Service uses essential cookies and local storage for authentication tokens and user preferences (e.g., theme selection, language). We do not use tracking or advertising cookies.</p>
 
-    <h2>9. Children's Privacy</h2>
-    <p>The Service is not intended for individuals under the age of 13. We do not knowingly collect personal information from children.</p>
+      <h2>9. Children&rsquo;s Privacy</h2>
+      <p>The Service is not intended for individuals under the age of 13. We do not knowingly collect personal information from children.</p>
 
-    <h2>10. Changes to This Policy</h2>
-    <p>We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new policy on this page with an updated revision date.</p>
+      <h2>10. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new policy on this page with an updated revision date.</p>
 
-    <h2>11. Contact Us</h2>
-    <p>If you have questions or concerns about this Privacy Policy, please contact us at <a href="mailto:support@kommon.io">support@kommon.io</a>.</p>
+      <h2>11. Contact Us</h2>
+      <p>If you have questions or concerns about this Privacy Policy, please contact us at <a href="mailto:support@kommon.io">support@kommon.io</a>.</p>
+    </div>
+
+    <div id="content-fr" style="display:none">
+      <h2>1. Introduction</h2>
+      <p>Kommonio (&laquo;&nbsp;nous&nbsp;&raquo;, &laquo;&nbsp;notre&nbsp;&raquo;) exploite l&rsquo;application Kadmin Demo. Cette Politique de confidentialit&eacute; explique comment nous recueillons, utilisons, divulguons et prot&eacute;geons vos informations lorsque vous utilisez notre Service.</p>
+
+      <h2>2. Informations que nous collectons</h2>
+      <p><strong>Informations de compte&nbsp;:</strong> Lors de la cr&eacute;ation d&rsquo;un compte, nous recueillons votre nom, adresse courriel et identifiants d&rsquo;authentification (g&eacute;r&eacute;s par Firebase Authentication).</p>
+      <p><strong>Donn&eacute;es d&rsquo;utilisation&nbsp;:</strong> Nous collectons automatiquement des informations sur votre interaction avec le Service, y compris les pages visit&eacute;es, les actions effectu&eacute;es et les horodatages.</p>
+      <p><strong>Informations sur l&rsquo;appareil&nbsp;:</strong> Nous pouvons collecter le type de navigateur, le syst&egrave;me d&rsquo;exploitation et l&rsquo;adresse IP &agrave; des fins de s&eacute;curit&eacute; et d&rsquo;analyse.</p>
+
+      <h2>3. Comment nous utilisons vos informations</h2>
+      <ul>
+        <li>Pour fournir, maintenir et am&eacute;liorer le Service.</li>
+        <li>Pour authentifier votre identit&eacute; et g&eacute;rer votre compte.</li>
+        <li>Pour appliquer le contr&ocirc;le d&rsquo;acc&egrave;s bas&eacute; sur les r&ocirc;les et les permissions.</li>
+        <li>Pour communiquer avec vous au sujet du Service (ex.&nbsp;: alertes de s&eacute;curit&eacute;).</li>
+        <li>Pour d&eacute;tecter, pr&eacute;venir et r&eacute;soudre les probl&egrave;mes techniques ou les abus.</li>
+      </ul>
+
+      <h2>4. Stockage des donn&eacute;es et s&eacute;curit&eacute;</h2>
+      <p>Vos donn&eacute;es sont stock&eacute;es dans Google Firebase (Firestore) et prot&eacute;g&eacute;es par un chiffrement conforme aux normes de l&rsquo;industrie. Nous mettons en &oelig;uvre des mesures de s&eacute;curit&eacute; techniques et organisationnelles appropri&eacute;es. Cependant, aucune m&eacute;thode de transmission ou de stockage &eacute;lectronique n&rsquo;est s&ucirc;re &agrave; 100&nbsp;%.</p>
+
+      <h2>5. Services tiers</h2>
+      <p>Nous utilisons les services tiers suivants qui peuvent collecter des donn&eacute;es&nbsp;:</p>
+      <ul>
+        <li><strong>Firebase Authentication</strong> &mdash; pour la connexion (SSO Google).</li>
+        <li><strong>Google Cloud / Firestore</strong> &mdash; pour le stockage des donn&eacute;es.</li>
+        <li><strong>Vercel</strong> &mdash; pour l&rsquo;h&eacute;bergement et les fonctions serverless.</li>
+      </ul>
+      <p>Chaque service fonctionne selon sa propre politique de confidentialit&eacute;.</p>
+
+      <h2>6. Conservation des donn&eacute;es</h2>
+      <p>Nous conservons vos donn&eacute;es personnelles uniquement aussi longtemps que n&eacute;cessaire aux fins d&eacute;crites dans cette politique. Vous pouvez demander la suppression de votre compte et des donn&eacute;es associ&eacute;es &agrave; tout moment en nous contactant.</p>
+
+      <h2>7. Vos droits</h2>
+      <p>Selon votre juridiction, vous pouvez avoir le droit de&nbsp;:</p>
+      <ul>
+        <li>Acc&eacute;der, corriger ou supprimer vos informations personnelles.</li>
+        <li>Vous opposer ou limiter le traitement de vos donn&eacute;es.</li>
+        <li>Demander la portabilit&eacute; de vos donn&eacute;es.</li>
+        <li>Retirer votre consentement le cas &eacute;ch&eacute;ant.</li>
+      </ul>
+
+      <h2>8. Cookies</h2>
+      <p>Le Service utilise des cookies essentiels et le stockage local pour les jetons d&rsquo;authentification et les pr&eacute;f&eacute;rences utilisateur (ex.&nbsp;: s&eacute;lection du th&egrave;me, langue). Nous n&rsquo;utilisons pas de cookies de suivi ou publicitaires.</p>
+
+      <h2>9. Vie priv&eacute;e des enfants</h2>
+      <p>Le Service n&rsquo;est pas destin&eacute; aux personnes de moins de 13 ans. Nous ne recueillons pas sciemment d&rsquo;informations personnelles aupr&egrave;s d&rsquo;enfants.</p>
+
+      <h2>10. Modifications de cette politique</h2>
+      <p>Nous pouvons mettre &agrave; jour cette Politique de confidentialit&eacute; de temps en temps. Nous vous informerons de tout changement important en publiant la nouvelle politique sur cette page avec une date de r&eacute;vision mise &agrave; jour.</p>
+
+      <h2>11. Nous contacter</h2>
+      <p>Si vous avez des questions ou des pr&eacute;occupations concernant cette Politique de confidentialit&eacute;, veuillez nous contacter &agrave; <a href="mailto:support@kommon.io">support@kommon.io</a>.</p>
+    </div>
 
     <div class="footer">
-      &copy; 2026 Kommonio. All rights reserved.
+      &copy; 2026 Kommonio. <span data-i18n="rights">All rights reserved.</span>
     </div>
   </div>
+
+  <script>
+    var i18n = {
+      en: { backLink: '\u2190 Back to Kadmin Demo', title: 'Privacy Policy', updated: 'Last updated: April 11, 2026', rights: 'All rights reserved.' },
+      fr: { backLink: '\u2190 Retour \u00e0 Kadmin Demo', title: 'Politique de confidentialit\u00e9', updated: 'Derni\u00e8re mise \u00e0 jour\u00a0: 11 avril 2026', rights: 'Tous droits r\u00e9serv\u00e9s.' }
+    };
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.getElementById('content-en').style.display = lang === 'en' ? '' : 'none';
+      document.getElementById('content-fr').style.display = lang === 'fr' ? '' : 'none';
+      document.getElementById('btn-en').className = lang === 'en' ? 'active' : '';
+      document.getElementById('btn-fr').className = lang === 'fr' ? 'active' : '';
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        if (i18n[lang][key]) el.innerHTML = i18n[lang][key];
+      });
+      try { localStorage.setItem('kadmin-lang', lang); } catch(e) {}
+    }
+    (function() {
+      var stored = null;
+      try { stored = localStorage.getItem('kadmin-lang'); } catch(e) {}
+      var lang = stored || (navigator.language && navigator.language.startsWith('fr') ? 'fr' : 'en');
+      setLang(lang);
+    })();
+  </script>
 </body>
 </html>
