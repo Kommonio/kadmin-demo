@@ -27,6 +27,7 @@ npm-debug.log*
 # Firebase
 .firebase/
 firestore-debug.log
+*-firebase-adminsdk-*.json
 
 # Vercel
 .vercel/
