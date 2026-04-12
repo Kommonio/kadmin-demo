@@ -2,7 +2,7 @@
   "version": 2,
   "buildCommand": "cd client && CI=false npm run build && cp ../public/*.html build/",
   "outputDirectory": "client/build",
-  "installCommand": "cd client && npm install && cd ../server && npm install",
+  "installCommand": "git config --global url.\"https://${GH_TOKEN}@github.com/\".insteadOf \"https://github.com/\" && git submodule update --init --recursive && cd client && npm install && cd ../server && npm install",
   "functions": {
     "api/index.js": {
       "maxDuration": 60,
